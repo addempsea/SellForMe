@@ -1,35 +1,46 @@
 <template class='temp'>
   <div class="auth">
-    
     <div class="auth_form">
       <!-- <div class="response" :class="[apiResponse ? apiResponse.type: '']" v-show="showResponse">
         {{ apiResponse.message}}
-      </div> -->
-      <form @submit.prevent="register">
-        <h1>CREATE AN ACCOUNT</h1>
+      </div>-->
+      <form @submit.prevent="add">
+        <h1>Add New Item</h1>
         <div class="form_item">
-          <label for="username">Name</label> <br> 
-          <input type="text" name="username" placeholder="Your name" v-model="user.name">
+          <label for="name">Name of Item</label>
+          <br />
+          <input type="text" name="name" placeholder="name of item" v-model="item.name" />
         </div>
         <div class="form_item">
-          <label for="username">Email</label> <br> 
-          <input type="text" name="username" placeholder="Your email" v-model="user.email">
+          <label for="Price">Price</label>
+          <br />
+          <input type="number" name="price" placeholder="price of item" v-model="item.price" />
         </div>
         <div class="form_item">
-          <label for="password">Password</label> <br> 
-          <input type="password" name="password" placeholder="Your Password" v-model="user.password">
+          <label for="password">Contact</label>
+          <br />
+          <input
+            type="string"
+            name="contact"
+            placeholder="enter your whatsapp number"
+            v-model="item.contact"
+          />
         </div>
-        
+        <div class="form_item">
+          <label for="Image Url">Image URL</label>
+          <br />
+          <input
+            type="url"
+            name="image_url"
+            placeholder="Image url"
+            v-model="item.image_url"
+          />
+        </div>
+
        <div class="text-center">
           <button>
-            Register
+            Add
           </button>
-        </div>
-        <div class="auth_check">
-          <p>
-            Have an account already?
-            <router-link :to="{name: 'login'}">Login</router-link>
-          </p>
         </div>
       </form>
     </div>
@@ -37,34 +48,18 @@
 </template>
 
 <script>
-
-import { mapActions } from 'vuex'
 export default {
-    name: 'Register',
-
+    name: 'edit',
     data() {
         return {
-            user: {
-                email: '',
-                password: '',
-                name: ''
+            item: {
+                name: '',
+                price: '',
+                contact: '',
+                image_url: ''
             },
-
-        // inputType: 'password',
-        // loading: false,
-        // showResponse: false
-
         }
     },
-
-    methods: {
-       ...mapActions([
-            'signup'
-        ]),
-        register() {
-            this.signup(this.user)
-        }
-    }
 }
 </script>
 
@@ -156,5 +151,4 @@ h1 {
     font-size: 1.5rem;
   }
 }
-
 </style>

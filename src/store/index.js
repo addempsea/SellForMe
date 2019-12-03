@@ -72,7 +72,65 @@ export default new Vuex.Store({
       } catch (error) {
         console.log(error.response)
       }
-    }
+    },
+
+    async getItems ({commit}) {
+      commit('changeStatus', 'pending')
+      try {
+        const response = await axios.get('http://localhost:3000/api/items');
+        console.log(response);
+        
+        let responseObject = {
+          type: 'success',
+          message: response.data.message
+        }
+        
+        commit('setResponse', responseObject)
+        commit('changeStatus', 'success')
+
+      } catch (error) {
+        console.log(error.response)
+      }
+    },
+
+    async editItem({commit}, itemInfo) {
+      commit('changeStatus', 'pending')
+      try {
+        const response = await axios.put('http://localhost:3000/api/edit/:id', itemInfo);
+        console.log(response);
+        
+        let responseObject = {
+          type: 'success',
+          message: response.data.message
+        }
+        
+        commit('setResponse', responseObject)
+        commit('changeStatus', 'success')
+       
+
+      } catch (error) {
+        console.log(error.response)
+      }
+    },
+
+    async deleteItem({commit}) {
+      commit('changeStatus', 'pending')
+      try {
+        const response = await axios.delete('http://localhost:3000/api/login');
+        console.log(response);
+        
+        let responseObject = {
+          type: 'success',
+          message: response.data.message
+        }
+        
+        commit('setResponse', responseObject)
+        commit('changeStatus', 'success')
+  
+      } catch (error) {
+        console.log(error.response)
+      }
+    },
   },
 
 

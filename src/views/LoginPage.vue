@@ -1,4 +1,4 @@
-<template class='temp'>
+<template>
   <div class="auth">
     
     <div class="auth_form">
@@ -66,7 +66,7 @@ export default {
     apiResponse(val) {
       this.showResponse = val.message != '' ? true : false
       if(val.type == 'success') {
-        setTimeout(()=> {this.$router.push({name: 'shop'})}, 1000)
+        setTimeout(()=> {this.$router.push({name: 'add'})}, 1000)
       }
     }
   },
