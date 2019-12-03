@@ -46,6 +46,7 @@ export default {
   padding: 0.2rem 4.75rem;
   align-items: center;
   font-family: 'Catamaran', sans-serif;
+  background-color: #ffffff;
 }
 .logo {
   font-size: 32px;
@@ -53,6 +54,7 @@ export default {
   text-transform: uppercase;
   color: #905E5E;
   text-decoration: none;
+  background-color: #ffffff
 }
 .search  input {
   width: 400px;
@@ -61,10 +63,12 @@ export default {
   border: 1px solid #905E5E;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+  background-color: #ffffff
 }
 .search form {
   display: flex;
   padding: 1rem;
+  background-color: #ffffff
 }
 .navbar_button {
   background: #905E5E;
@@ -74,6 +78,7 @@ export default {
   font-size: 16px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  
 }
 .navbar_menu {
   display: flex;
@@ -81,18 +86,21 @@ export default {
   padding: 0;
   margin: 0;
   align-items: center;
+  background-color: #ffffff
 }
 .navbar_menu li {
   margin: 0.5rem 2rem;
   cursor: pointer;
   border-bottom: 2px solid transparent;
   transition: border-bottom 500ms ease-in-out;
+  background-color: #ffffff
 }
 .navbar_menu a {
   color: #905E5E;
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
+  background-color: #ffffff
 }
 .navbar_menu li:hover {
   border-bottom: 2px solid #905E5E;

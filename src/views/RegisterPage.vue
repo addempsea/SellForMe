@@ -2,11 +2,15 @@
   <div class="auth">
     
     <div class="auth_form">
-      <div class="response" :class="[apiResponse ? apiResponse.type: '']" v-show="showResponse">
+      <!-- <div class="response" :class="[apiResponse ? apiResponse.type: '']" v-show="showResponse">
         {{ apiResponse.message}}
-      </div>
-      <form @submit.prevent="signin">
-        <h1>Login</h1>
+      </div> -->
+      <form @submit.prevent="register">
+        <h1>CREATE AN ACCOUNT</h1>
+        <div class="form_item">
+          <label for="username">Name</label> <br> 
+          <input type="text" name="username" placeholder="Your name" v-model="user.name">
+        </div>
         <div class="form_item">
           <label for="username">Email</label> <br> 
           <input type="text" name="username" placeholder="Your email" v-model="user.email">
@@ -15,89 +19,70 @@
           <label for="password">Password</label> <br> 
           <input type="password" name="password" placeholder="Your Password" v-model="user.password">
         </div>
+        
+        <!-- <input type="text" v-model="user.username"> -->
         <div class="text-center">
           <button :disabled="loading">
             <span v-if="loading">Loading..</span>
-            <span v-else>Login</span>
+            <span v-else>Register</span>
           </button>
         </div>
         <div class="auth_check">
           <p>
-            Dont have an account?
-            <router-link :to="{name: 'register'}">Register</router-link>
+            Have an account already?
+            <router-link :to="{name: 'login'}">Login</router-link>
           </p>
         </div>
       </form>
     </div>
   </div>
 </template>
+
 <script>
-import { mapActions, mapGetters } from 'vuex'
+
+import { mapActions } from 'vuex'
 export default {
-  name: 'LoginPage',
-  data() {
-    return {
-      user: {
-        email: '',
-        password: ''
-      },
-      inputType: 'password',
-      loading: false,
-      showResponse: false
-    }
-  },
-  computed: {
-    ...mapGetters([
-      'currentStatus',
-      'apiResponse'
-    ]),
-    isValid() {
-      if( this.user.email == '' || this.user.password == '') {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  },
-  watch: {
-    currentStatus(val) {
-      this.loading = val == 'pending' ? true : false
+    name: 'Register',
+
+    data() {
+        return {
+            user: {
+                email: '',
+                password: '',
+                name: ''
+            },
+
+        // inputType: 'password',
+        // loading: false,
+        // showResponse: false
+
+        }
     },
-    apiResponse(val) {
-      this.showResponse = val.message != '' ? true : false
-      if(val.type == 'success') {
-        setTimeout(()=> {this.$router.push({name: 'shop'})}, 1000)
-      }
+
+    methods: {
+       ...mapActions([
+            'signup'
+        ]),
+        register() {
+            this.signup(this.user)
+        }
     }
-  },
-  methods: {
-    ...mapActions([
-      'login'
-    ]),
-    signin() {
-      if(this.isValid) {
-        this.login(this.user)
-      } else {
-        alert('All fields are required')
-      }
-    }
-  }
 }
 </script>
 
 <style scoped>
 .auth_form {
-  padding: 4rem;
+  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 15rem;
+  margin: 2rem 6rem;
   background-color: #fff9f9
 }
 
 .form_item {
-    margin-bottom: 2rem;
-    background-color: #fff9f9
+  margin: 2rem 0;
+  background-color: #fff9f9
 }
 
 form {
@@ -106,7 +91,7 @@ form {
 
 label {
     background-color: #fff9f9;
-    margin-left: 0em;
+    
 }
 
 input {
