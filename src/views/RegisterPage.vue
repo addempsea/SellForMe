@@ -1,10 +1,7 @@
-<template class='temp'>
+<template>
   <div class="auth">
     
     <div class="auth_form">
-      <!-- <div class="response" :class="[apiResponse ? apiResponse.type: '']" v-show="showResponse">
-        {{ apiResponse.message}}
-      </div> -->
       <form @submit.prevent="register">
         <h1>CREATE AN ACCOUNT</h1>
         <div class="form_item">
@@ -49,11 +46,6 @@ export default {
                 password: '',
                 name: ''
             },
-
-        // inputType: 'password',
-        // loading: false,
-        // showResponse: false
-
         }
     },
 

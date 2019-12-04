@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
     name: 'edit',
     data() {
@@ -57,8 +58,14 @@ export default {
                 price: '',
                 contact: '',
                 image_url: ''
-            },
+            }
         }
+    },
+
+    methods: {
+      ...mapActions(['add']),
+
+      
     },
 }
 </script>

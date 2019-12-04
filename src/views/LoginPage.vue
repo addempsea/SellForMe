@@ -2,9 +2,6 @@
   <div class="auth">
     
     <div class="auth_form">
-      <div class="response" :class="[apiResponse ? apiResponse.type: '']" v-show="showResponse">
-        {{ apiResponse.message}}
-      </div>
       <form @submit.prevent="signin">
         <h1>Login</h1>
         <div class="form_item">
@@ -16,11 +13,9 @@
           <input type="password" name="password" placeholder="Your Password" v-model="user.password">
         </div>
         <div class="text-center">
-          <button :disabled="loading">
-            <span v-if="loading">Loading..</span>
-            <span v-else>Login</span>
-          </button>
+          <button>Login</button>
         </div>
+        <p class="api_res">{{ apiResponse.message }}</p>
         <div class="auth_check">
           <p>
             Dont have an account?
@@ -40,17 +35,15 @@ export default {
       user: {
         email: '',
         password: ''
-      },
-      inputType: 'password',
-      loading: false,
-      showResponse: false
+      }
     }
   },
+
   computed: {
     ...mapGetters([
-      'currentStatus',
       'apiResponse'
     ]),
+
     isValid() {
       if( this.user.email == '' || this.user.password == '') {
         return false;
@@ -59,24 +52,24 @@ export default {
       }
     }
   },
+
   watch: {
-    currentStatus(val) {
-      this.loading = val == 'pending' ? true : false
-    },
     apiResponse(val) {
-      this.showResponse = val.message != '' ? true : false
       if(val.type == 'success') {
-        setTimeout(()=> {this.$router.push({name: 'add'})}, 1000)
+        setTimeout(()=> {this.$router.push({name: 'add'})}, 2000)
       }
     }
   },
+  
   methods: {
     ...mapActions([
       'login'
     ]),
+
     signin() {
       if(this.isValid) {
         this.login(this.user)
+        
       } else {
         alert('All fields are required')
       }
@@ -162,10 +155,13 @@ h1 {
   text-decoration: underline;
 }
 
+.api_res {
+    background: #fff9f9;
+    font-size: 1.5em;
+}
+
 @media screen and (max-width: 768px) {
-  .auth {
-    grid-template-columns: 1fr;
-  }
+
   .auth_form {
     padding: 1rem;
   }

@@ -22,9 +22,6 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    changeStatus: (state, payload) => {
-      state.status = payload
-    },
     setResponse: (state, payload) => {
       state.response = {
         type: payload.type,
@@ -38,8 +35,7 @@ export default new Vuex.Store({
 
 
   actions: {
-    async signup({commit}, userInfo) { 
-      commit('changeStatus', 'pending')      
+    async signup({commit}, userInfo) {       
       try {
           const response = await axios.post('http://localhost:3000/api/register', userInfo);
           console.log(response);
@@ -55,18 +51,26 @@ export default new Vuex.Store({
     },
 
     async login({commit}, userInfo) {
-      commit('changeStatus', 'pending')
       try {
         const response = await axios.post('http://localhost:3000/api/login', userInfo);
-        console.log(response);
         
-        let responseObject = {
-          type: 'success',
-          message: response.data.message
+        if (response.status >= 200 && response.status < 400) {
+          let responseObject = {
+            type: 'success',
+            message: response.data.message
+          }
+          commit('setResponse', responseObject)
+          console.log(responseObject);
         }
-        
-        commit('setResponse', responseObject)
-        commit('changeStatus', 'success')
+
+        if (response.status >= 400) {
+          let responseObject = {
+            type: 'failed',
+            message: response.data.message
+          }
+          commit('setResponse', responseObject)
+          console.log(responseObject);
+        }
         commit('saveToken', response.data.token)
 
       } catch (error) {
