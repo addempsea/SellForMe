@@ -1,10 +1,8 @@
 <template class='temp'>
   <div class="auth">
     <div class="auth_form">
-      <!-- <div class="response" :class="[apiResponse ? apiResponse.type: '']" v-show="showResponse">
-        {{ apiResponse.message}}
-      </div>-->
-      <form @submit.prevent="add">
+      
+      <form @submit.prevent="addItems">
         <h1>Add New Item</h1>
         <div class="form_item">
           <label for="name">Name of Item</label>
@@ -63,9 +61,11 @@ export default {
     },
 
     methods: {
-      ...mapActions(['add']),
+      ...mapActions(['addItem']),
 
-      
+      addItems() {
+        this.addItem(this.item)
+      }
     },
 }
 </script>
