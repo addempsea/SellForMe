@@ -65,7 +65,7 @@ export default {
 
 <style scoped>
 .auth_form {
-  padding: 2rem;
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,11 +139,11 @@ h1 {
 .auth_check a:hover {
   text-decoration: underline;
 }
+.text-center {
+    margin-bottom: 0.5rem;
+}
 
 @media screen and (max-width: 768px) {
-  .auth {
-    grid-template-columns: 1fr;
-  }
   .auth_form {
     padding: 1rem;
   }

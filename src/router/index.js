@@ -5,6 +5,7 @@ import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
 import Add from '../views/Add.vue'
 import Edit from '../views/Edit.vue'
+import Homer from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/edit/:id',
     name: 'edit',
     component: Edit
+  },
+  {
+    path: '/homer',
+    name: 'ed',
+    component: Homer
   }
 
 ]
