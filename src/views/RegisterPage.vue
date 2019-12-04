@@ -1,36 +1,39 @@
 <template>
-  <div class="auth">
-    
-    <div class="auth_form">
-      <form @submit.prevent="register">
-        <h1>CREATE AN ACCOUNT</h1>
-        <div class="form_item">
-          <label for="username">Name</label> <br> 
-          <input type="text" name="username" placeholder="Your name" v-model="user.name">
-        </div>
-        <div class="form_item">
-          <label for="username">Email</label> <br> 
-          <input type="text" name="username" placeholder="Your email" v-model="user.email">
-        </div>
-        <div class="form_item">
-          <label for="password">Password</label> <br> 
-          <input type="password" name="password" placeholder="Your Password" v-model="user.password">
-        </div>
-        
-       <div class="text-center">
-          <button>
-            Register
-          </button>
-        </div>
-        <div class="auth_check">
-          <p>
-            Have an account already?
-            <router-link :to="{name: 'login'}">Login</router-link>
-          </p>
-        </div>
-      </form>
+  <div class="container">
+    <div class="auth">
+      
+      <div class="auth_form">
+        <form @submit.prevent="register">
+          <h1>CREATE AN ACCOUNT</h1>
+          <div class="form_item">
+            <label for="username">Name</label> <br> 
+            <input type="text" name="username" placeholder="Your name" v-model="user.name">
+          </div>
+          <div class="form_item">
+            <label for="username">Email</label> <br> 
+            <input type="text" name="username" placeholder="Your email" v-model="user.email">
+          </div>
+          <div class="form_item">
+            <label for="password">Password</label> <br> 
+            <input type="password" name="password" placeholder="Your Password" v-model="user.password">
+          </div>
+          
+        <div class="text-center">
+            <button>
+              Register
+            </button>
+          </div>
+          <div class="auth_check">
+            <p>
+              Have an account already?
+              <router-link :to="{name: 'login'}">Login</router-link>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -61,6 +64,7 @@ export default {
 </script>
 
 <style scoped>
+
 .auth_form {
   padding: 2rem;
   display: flex;

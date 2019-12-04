@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="whole">
     <div class="container">
       <h3>
         Buy and sell for free on SellForMe
@@ -11,10 +11,23 @@
       <div v-for="item in getItems" :key="item._id" class="item_holder">
         <div class="edit">
           <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
-          <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+          <span><i class="fa fa-trash" aria-hidden="true" @click="deleteItem(item._id)"></i></span>
         </div>
         <div class="image">
           <img :src=item.image_url :alt=item.name>
+        </div>
+        <div class="item_name">
+          <p> {{item.name}} </p>
+        </div>
+        <div class="item_price">
+          <p> ${{item.price}} </p>
+        </div>
+        <div class="item_contact">
+          <button>
+            
+            <a :href="`https://api.whatsapp.com/send?phone=234${item.contact}`" target="__blank">Contact me</a>
+            
+          </button>
         </div>
       </div>
     </div>
@@ -31,7 +44,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchItems"])
+    ...mapActions(["fetchItems", "deleteItem"])
   },
 
   created() {
@@ -40,12 +53,16 @@ export default {
 };
 </script>
 <style scoped>
+
+.whole {
+  background: #F9F5F5
+}
+
 .container {
   background: url("../assets/image 1.jpg");
   font-size: 40px;
   text-align: center;
   padding: 5rem;
-  
 }
 
 h3 {
@@ -62,14 +79,12 @@ h3 {
   
 }
 
-/* i {
-  background: #ffff;
-} */
 
 .edit {
   display: flex;
   justify-content: space-between;
-  /* background: #ffff; */
+  margin: 1em;
+  cursor: pointer;
 }
 
 .image {
@@ -80,5 +95,41 @@ h3 {
 .item_holder {
   max-width: 100%;
   background: #ffff;
+}
+.item_name {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  color: #905E5E;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+.item_price {
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.item_contact {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.item_contact a {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 30px;
+  
+  text-decoration: none;
+  text-align: center;
+
+  color: #FFFBFB;
+}
+.item_contact button {
+ background: #B89797;
+ border: none;
 }
 </style>

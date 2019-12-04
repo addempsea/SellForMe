@@ -36,6 +36,12 @@ export default new Vuex.Store({
     newItem(state, item) {
       state.items.unshift(item)
     },
+
+    removeItem(state, id) {
+      state.items = state.items.filter(function(item) {
+        return item.id != id;
+      })
+    }
   },
 
 
@@ -108,36 +114,18 @@ export default new Vuex.Store({
     async addItem({commit}, itemInfo) {
       try {
         const response = await axios.post('http://localhost:3000/api/add', itemInfo);
+        commit('newItem', itemInfo)
         console.log(response);
-        
-        let responseObject = {
-          type: 'success',
-          message: response.data.message
-        }
-        
-        commit('setResponse', responseObject)
-        
-       
 
       } catch (error) {
         console.log(error.response)
       }
     },
 
-    async deleteItem({commit}) {
-      commit('changeStatus', 'pending')
+    async deleteItem({commit}, id) {
       try {
-        const response = await axios.delete('http://localhost:3000/api/login');
-        console.log(response);
-        
-        let responseObject = {
-          type: 'success',
-          message: response.data.message
-        }
-        
-        commit('setResponse', responseObject)
-        commit('changeStatus', 'success')
-  
+        await axios.delete(`http://localhost:3000/api/delete/${id}`);
+        commit('removeItem', id);
       } catch (error) {
         console.log(error.response)
       }
