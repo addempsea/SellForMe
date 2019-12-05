@@ -9,8 +9,8 @@
     </div>
     <div class="item_display">
       <div v-for="item in getItems" :key="item._id" class="item_holder">
-        <div class="edit">
-          <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+        <div class="edit" v-if="loggedIn">
+          <span><i class="fa fa-pencil" aria-hidden="true" @click="edit(item._id)"></i></span>
           <span><i class="fa fa-trash" aria-hidden="true" @click="deleteItem(item._id)"></i></span>
         </div>
         <div class="image">
@@ -40,11 +40,19 @@ export default {
   name: "home",
 
   computed: {
-    ...mapGetters(["getItems"])
+    ...mapGetters(["getItems", 'loggedIn'])
   },
 
   methods: {
-    ...mapActions(["fetchItems", "deleteItem"])
+    ...mapActions(["fetchItems", "deleteItem"]),
+
+    edit(id) {
+      this.$router.push({
+        name: "edit",
+        params: { id: id }
+      });
+    }
+    
   },
 
   created() {
@@ -90,6 +98,7 @@ h3 {
 .image {
   display: flex;
   justify-content: center;
+  margin: 1em;
   
 }
 .item_holder {

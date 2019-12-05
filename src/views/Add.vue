@@ -60,12 +60,29 @@ export default {
         }
     },
 
+    computed: {
+       isValid() {
+        if( this.item.price == '' || this.item.contact == '' || this.item.name == '' || this.item.image_url == '') {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    },
+
     methods: {
       ...mapActions(['addItem']),
 
-      addItems() {
-        this.addItem(this.item)
-      }
+    
+        addItems() {
+          if (this.isValid)  {
+            this.addItem(this.item)
+            this.$router.push({name: 'home'})
+          } else {
+            alert('All fields are required')
+          }
+        }
+     
     },
 }
 </script>

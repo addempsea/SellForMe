@@ -1,17 +1,17 @@
 <template>
-  <div class="auth">
-    <div class="auth_form">
+  <div class="edit">
+    <div class="edit_form" >
       <form @submit.prevent="add">
         <h1>Edit Item</h1>
         <div class="form_item">
           <label for="name">Name of Item</label>
           <br />
-          <input type="text" name="name" placeholder="name of item" v-model="item.name" />
+          <input type="text" name="name" placeholder="name of item" v-model="getItems.name" />
         </div>
         <div class="form_item">
           <label for="Price">Price</label>
           <br />
-          <input type="number" name="price" placeholder="price of item" v-model="item.price" />
+          <input type="number" name="price" placeholder="price of item" v-model="getItems.price" />
         </div>
         <div class="form_item">
           <label for="password">Contact</label>
@@ -20,7 +20,7 @@
             type="string"
             name="contact"
             placeholder="enter your whatsapp number"
-            v-model="item.contact"
+            v-model="getItems.contact"
           />
         </div>
         <div class="form_item">
@@ -30,12 +30,12 @@
             type="url"
             name="image_url"
             placeholder="Image url"
-            v-model="item.image_url"
+            v-model="getItems.image_url"
           />
         </div>
 
         <div class="text-center">
-          <button>
+          <button @click="edit">
             Edit
           </button>
         </div>
@@ -45,23 +45,51 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
+
 export default {
-    name: 'edit',
-    data() {
-        return {
-            item: {
-                name: '',
-                price: '',
-                contact: '',
-                image_url: ''
-            },
-        }
+  name: 'edit',
+  data() {
+    return {
+      item: {
+        price: '',
+        name: '',
+        image_url: '',
+        contact: ''
+      }
+    }
+  },
+
+    computed: {
+      ...mapGetters(['getItems']),
     },
+    
+    methods: {
+      ...mapActions(['fetchItem', 'editItem']),
+      edit() {
+        let data = {
+          name: this.getItems.name,
+          price : this.getItems.price,
+          contact : this.getItems.contact,
+          image_url : this.getItems.image_url
+        }
+        console.log(data);
+        
+        this.editItem(this.$route.params.id, data)
+      }
+    },
+
+    mounted() {
+      this.fetchItem(this.$route.params.id)
+    }
+
+
 }
 </script>
 
 <style scoped>
-.auth_form {
+.edit_form {
   /* padding: 1rem; */
   display: flex;
   justify-content: center;
@@ -101,7 +129,7 @@ h1 {
     margin-left: 2.5em;
 }
 
-.auth_form button {
+.edit_form button {
   background: #DFCCCC;
   padding: 1rem 3rem;
   border: none;
@@ -113,7 +141,7 @@ h1 {
   transition: all 200ms ease-in;
 }
 
-.auth_form button:hover {
+.edit_form button:hover {
   color: #905E5E;
   background: #DFCCCC;
 }
@@ -123,17 +151,17 @@ h1 {
    background-color: #fff9f9;
 }
 
-.auth_check p {
+.edit_check p {
   text-align: center;
   font-size: 16px;
    background-color: #fff9f9;
 }
-.auth_check a {
+.edit_check a {
   color:  #905E5E;
   text-decoration: none;
   background-color: #fff9f9;
 }
-.auth_check a:hover {
+.edit_check a:hover {
   text-decoration: underline;
 }
 .text-center {
@@ -141,13 +169,13 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
-  .auth {
+  .edit {
     grid-template-columns: 1fr;
   }
-  .auth_form {
+  .edit_form {
     padding: 1rem;
   }
-  .auth_form h1 {
+  .edit_form h1 {
     font-size: 1.5rem;
   }
 }

@@ -11,14 +11,20 @@ export default new Vuex.Store({
       type: "",
       message: ""
     },
+    token: localStorage.getItem('access_token') || null,
 
-    items: []
+    items: [],
+    item: []
 
   },
 
   getters: {
+    loggedIn(state) {
+      return state.token !== null
+    },
     apiResponse: state => state.response,
-    getItems: state => state.items
+    getItems: state => state.items,
+    getItem: state => state.item
   },
 
   mutations: {
@@ -33,14 +39,32 @@ export default new Vuex.Store({
       state.items = items;
     },
 
+    setItem (state, item) {
+      state.item = item
+    },
+
     newItem(state, item) {
       state.items.unshift(item)
     },
 
     removeItem(state, id) {
       state.items = state.items.filter(function(item) {
-        return item.id != id;
+        return item._id != id;
       })
+    },
+
+    editItem(state, id) {
+      state.items = state.items.filter(function(item) {
+        return item._id == id
+      })
+    },
+
+    retrieveToken(state, token) {
+      state.token = token
+    },
+
+    destroyToken(state) {
+      state.token = null
     }
   },
 
@@ -66,17 +90,19 @@ export default new Vuex.Store({
         const response = await axios.post('http://localhost:3000/api/login', userInfo);
         
         if (response.status == 200) {
-  
+          console.log(response);
           let responseObject = {
             type: 'success',
             message: response.data.message
           }
+          const token = response.data.token
+          
+          localStorage.setItem('access_token', token)
+          commit('retrieveToken', token)
           commit('setResponse', responseObject)
           console.log(responseObject);
+          console.log(token);
         }
-
-      
-
       } catch (error) {
         console.log(error.response)
       }
@@ -92,10 +118,22 @@ export default new Vuex.Store({
       }
     },
 
-    async editItem({commit}, itemInfo) {
+    async fetchItem ({commit}, id) {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/item/${id}`);
+        console.log(response.data);
+        
+        commit('setItems', response.data.data)
+
+      } catch (error) {
+        console.log(error.response)
+      }
+    },
+
+    async editItem({commit}, id, itemInfo) {
       
       try {
-        const response = await axios.put('http://localhost:3000/api/edit/:id', itemInfo);
+        const response = await axios.put(`http://localhost:3000/api/edit/${id}`, itemInfo);
         console.log(response);
         
         let responseObject = {
@@ -113,6 +151,7 @@ export default new Vuex.Store({
 
     async addItem({commit}, itemInfo) {
       try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
         const response = await axios.post('http://localhost:3000/api/add', itemInfo);
         commit('newItem', itemInfo)
         console.log(response);
@@ -124,12 +163,20 @@ export default new Vuex.Store({
 
     async deleteItem({commit}, id) {
       try {
-        await axios.delete(`http://localhost:3000/api/delete/${id}`);
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
+        const response = await axios.delete(`http://localhost:3000/api/delete/${id}`);
+        console.log(response);
+        
         commit('removeItem', id);
       } catch (error) {
         console.log(error.response)
       }
     },
+
+    logout({commit}) {
+      localStorage.removeItem('access_token')
+      commit('destroyToken')
+    }
   },
 
 

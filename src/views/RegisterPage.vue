@@ -52,14 +52,32 @@ export default {
         }
     },
 
+    computed: {
+       isValid() {
+        if( this.user.email == '' || this.user.password == '' || this.user.name == '') {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    },
+
     methods: {
        ...mapActions([
             'signup'
         ]),
+
         register() {
-            this.signup(this.user)
+          if(this.isValid) {
+             this.signup(this.user)
+            this.$router.push({name: 'login'}) 
+          } else {
+              alert('All fields are required')
+          }
         }
-    }
+         
+  }
+    
 }
 </script>
 

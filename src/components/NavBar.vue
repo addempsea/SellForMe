@@ -9,7 +9,7 @@
         <button class="navbar_button">Search</button>
       </form>
     </div>
-    <ul class="navbar_menu" >
+    <ul class="navbar_menu" v-if="!loggedIn">
       <li>
         <router-link :to="{ name: 'login' }">Login</router-link>
       </li>
@@ -17,25 +17,33 @@
         <router-link :to="{ name: 'register' }">Register</router-link>
       </li>
     </ul>
-    <!-- <ul class="navbar_menu" v-else>
+    <ul class="navbar_menu" v-else>
       <li>
-        <a href="#" @click="saveToken('')">Logout</a>
+        <router-link :to="{ name: 'add' }">Add</router-link>
       </li>
-    </ul> -->
+      <li>
+        <a href="#" @click="signout">Logout</a>
+      </li> 
+    </ul>
   </nav>
 </template>
 <script>
-// import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Navbar',
-  // computed: {
-  //   ...mapGetters([
-  //     'userToken'
-  //   ])
-  // },
-  // methods: {
-  //   ...mapMutations(['saveToken'])
-  // }
+  computed: {
+    ...mapGetters([
+      'loggedIn'
+    ])
+  },
+  methods: {
+    ...mapActions(['logout']),
+
+    signout() {
+      this.logout()
+      this.$router.push({name: 'home'})
+    }
+  }
 }
 </script>
 <style scoped>
