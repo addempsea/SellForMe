@@ -34,7 +34,7 @@
             v-model="item.image_url"
           />
         </div>
-
+        <p class="api_res">{{ apiResponseAdd.message }} </p>
        <div class="text-center">
           <button>
             Add
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
     name: 'edit',
     data() {
@@ -61,6 +61,7 @@ export default {
     },
 
     computed: {
+      ...mapGetters(['apiResponseAdd']),
        isValid() {
         if( this.item.price == '' || this.item.contact == '' || this.item.name == '' || this.item.image_url == '') {
           return false;
@@ -77,7 +78,7 @@ export default {
         addItems() {
           if (this.isValid)  {
             this.addItem(this.item)
-            this.$router.push({name: 'home'})
+            this.item = ''
           } else {
             alert('All fields are required')
           }
@@ -165,6 +166,11 @@ h1 {
 }
 .text-center {
     margin-bottom: 0.5rem;
+}
+
+.api_res {
+    background: #fff9f9;
+    font-size: 1.5em;
 }
 
 @media screen and (max-width: 768px) {

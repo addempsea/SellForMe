@@ -12,10 +12,11 @@
           <label for="password">Password</label> <br> 
           <input type="password" name="password" placeholder="Your Password" v-model="user.password">
         </div>
+         <p class="api_res">{{ apiResponse.message }}</p>
         <div class="text-center">
           <button>Login</button>
         </div>
-        <p class="api_res">{{ apiResponse.message }}</p>
+       
         <div class="auth_check">
           <p>
             Dont have an account?
@@ -57,7 +58,7 @@ export default {
     apiResponse(val) {
       if(val.type == 'success') {
         setTimeout(()=> {this.$router.push({name: 'add'})}, 2000)
-      }
+      } 
     }
   },
   

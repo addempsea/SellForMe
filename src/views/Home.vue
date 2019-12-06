@@ -1,43 +1,51 @@
 <template>
-  <div class="whole">
-    <div class="container">
-      <h3>
-        Buy and sell for free on SellForMe
-        <br />Post ads for Cars, Phones, Shoes, Clothes and many more.
-        <br />Anything you want, there is somebody that wants to sell.
-      </h3>
-    </div>
-    <div class="item_display">
-      <div v-for="item in getItems" :key="item._id" class="item_holder">
-        <div class="edit" v-if="loggedIn">
-          <span><i class="fa fa-pencil" aria-hidden="true" @click="edit(item._id)"></i></span>
-          <span><i class="fa fa-trash" aria-hidden="true" @click="deleteItem(item._id)"></i></span>
-        </div>
-        <div class="image">
-          <img :src=item.image_url :alt=item.name>
-        </div>
-        <div class="item_name">
-          <p> {{item.name}} </p>
-        </div>
-        <div class="item_price">
-          <p> ${{item.price}} </p>
-        </div>
-        <div class="item_contact">
-          <button>
-            
-            <a :href="`https://api.whatsapp.com/send?phone=234${item.contact}`" target="__blank">Contact me</a>
-            
-          </button>
+  <div>
+    <nav-bar></nav-bar>
+    
+    
+    <div class="whole">
+      <div class="container">
+        <h3>
+          Buy and sell for free on SellForMe
+          <br />Post ads for Cars, Phones, Shoes, Clothes and many more.
+          <br />Anything you want, there is somebody that wants to sell.
+        </h3>
+      </div>
+      <div class="item_display">
+        <div v-for="item in getItems" :key="item._id" class="item_holder">
+          <div class="edit" v-if="loggedIn">
+            <span><i class="fa fa-pencil" aria-hidden="true" @click="edit(item._id)"></i></span>
+            <span><i class="fa fa-trash" aria-hidden="true" @click="deleteItem(item._id)"></i></span>
+          </div>
+          <div class="image">
+            <img :src=item.image_url :alt=item.name>
+          </div>
+          <div class="item_name">
+            <p> {{item.name}} </p>
+          </div>
+          <div class="item_price">
+            <p> ${{item.price}} </p>
+          </div>
+          <div class="item_contact">
+            <button>
+              
+              <a :href="`https://api.whatsapp.com/send?phone=234${item.contact}`" target="__blank">Contact me</a>
+              
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "home",
+  components: {NavBar},
 
   computed: {
     ...mapGetters(["getItems", 'loggedIn'])
@@ -71,6 +79,7 @@ export default {
   font-size: 40px;
   text-align: center;
   padding: 5rem;
+  margin-top: 20px;
 }
 
 h3 {
@@ -140,5 +149,11 @@ h3 {
 .item_contact button {
  background: #B89797;
  border: none;
+}
+
+@media screen and (max-width: 768px) {
+ .item_display {
+   display: block;
+ }
 }
 </style>
