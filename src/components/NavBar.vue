@@ -5,8 +5,8 @@
     </div>
     <div class="search">
       <form @submit.prevent>
-        <input type="text" placeholder="Search..." name="search">
-        <button class="navbar_button">Search</button>
+        <input type="text" placeholder="Search..." name="search" v-model="query">
+        <button class="navbar_button" @click.prevent="filter">Search</button>
       </form>
     </div>
     <ul class="navbar_menu" v-if="!loggedIn">
@@ -31,17 +31,27 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Navbar',
+  data() {
+    return {
+      query: ""
+    }
+  },
   computed: {
     ...mapGetters([
       'loggedIn'
     ])
   },
   methods: {
-    ...mapActions(['logout']),
+    ...mapActions(['logout', 'search']),
 
     signout() {
       this.logout()
       this.$router.push({name: 'home'})
+    },
+
+    filter() {
+      this.search(this.query)
+      this.$router.push({name: 'search'})
     }
   }
 }
@@ -86,6 +96,7 @@ export default {
   font-size: 16px;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  cursor: pointer;
   
 }
 .navbar_menu {

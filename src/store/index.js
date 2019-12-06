@@ -22,7 +22,7 @@ export default new Vuex.Store({
     token: localStorage.getItem('access_token') || null,
 
     items: [],
-    item: []
+    item: [],
 
   },
 
@@ -44,6 +44,7 @@ export default new Vuex.Store({
         message: payload.message
       }
     },
+
     setResponseAdd: (state, payload) => {
       state.responseAdd = {
         type: payload.type,
@@ -72,6 +73,15 @@ export default new Vuex.Store({
       state.items = state.items.filter(function (item) {
         return item._id != id;
       })
+    },
+
+    searchItem(state, query) {
+      let x = query;
+      let result = state.items.filter(function(item) {
+        return item.name.includes(x);
+      });
+
+      state.item = result
     },
 
 
@@ -192,7 +202,7 @@ export default new Vuex.Store({
       } catch (error) {
         let responseObject = {
           type: 'failed',
-          message: response.data.message
+          message: error.response.data.message
         }
         commit('setResponseAdd', responseObject)
         console.log(error.response)
@@ -212,9 +222,14 @@ export default new Vuex.Store({
     },
 
     logout({ commit }) {
-      axios.defaults.headers.common = {}
+      axios.defaults.headers.common['Authorization'] = {}
       localStorage.removeItem('access_token')
       commit('destroyToken')
+    },
+
+    search({commit}, query) {
+      commit('searchItem', query)
+      
     }
   },
 
