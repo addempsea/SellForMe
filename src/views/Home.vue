@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <nav-bar></nav-bar>
-    
+  
     
     <div class="whole">
       <div class="container">
@@ -36,17 +34,14 @@
         </div>
       </div>
     </div>
-    
-  </div>
+  
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
+
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "home",
-  components: {NavBar},
-
   computed: {
     ...mapGetters(["getItems", 'loggedIn'])
   },
