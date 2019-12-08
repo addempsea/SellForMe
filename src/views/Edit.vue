@@ -1,7 +1,7 @@
 <template>
   <div class="edit">
     <div class="edit_form" >
-      <form @submit.prevent="add">
+      <form @submit.prevent="">
         <h1>Edit Item</h1>
         <div class="form_item">
           <label for="name">Name of Item</label>
@@ -33,9 +33,9 @@
             v-model="getItems.image_url"
           />
         </div>
-
+        <p class="api_res">{{ apiResponseEd.message }}</p>
         <div class="text-center">
-          <button @click="edit">
+          <button @click="ed">
             Edit
           </button>
         </div>
@@ -57,11 +57,16 @@ export default {
   },
 
     computed: {
-      ...mapGetters(['getItems'])
+      ...mapGetters(["getItems", "apiResponseEd"])
+      
     },
     
     methods: {
       ...mapActions(['fetchItem', 'editItem']),
+
+      ed() {
+        this.editItem(this.getItems);
+      }
 
     },
 
@@ -152,6 +157,10 @@ h1 {
 }
 .text-center {
     margin-bottom: 0.5rem;
+}
+.api_res {
+  font-family: cursive;
+  color: green;
 }
 
 @media screen and (max-width: 768px) {

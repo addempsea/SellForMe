@@ -19,10 +19,14 @@ export default new Vuex.Store({
       type: "",
       message: ""
     },
+    responseEd: {
+      type: "",
+      message: ""
+    },
     token: localStorage.getItem('access_token') || null,
 
     items: [],
-    item: [],
+    item: []
 
   },
 
@@ -33,6 +37,7 @@ export default new Vuex.Store({
     apiResponse: state => state.response,
     apiResponseReg: state => state.responseReg,
     apiResponseAdd: state => state.responseAdd,
+    apiResponseEd: state => state.responseEd,
     getItems: state => state.items,
     getItem: state => state.item
   },
@@ -57,6 +62,12 @@ export default new Vuex.Store({
         message: payload.message
       }
     },
+    setResponseEd: (state, payload) => {
+      state.responseEd = {
+        type: payload.type,
+        message: payload.message
+      }
+    },
     setItems(state, items) {
       state.items = items;
     },
@@ -74,11 +85,6 @@ export default new Vuex.Store({
         return item._id != id;
       })
     },
-
-    // editItems(state, item) {
-    //   let ed = state.items.find(e => e.id == item.id)
-    //   state.items = ed
-    // },
 
     searchItem(state, query) {
       let x = query;
@@ -161,7 +167,7 @@ export default new Vuex.Store({
     async fetchItem({ commit }, id) {
       try {
         const response = await axios.get(`http://localhost:3000/api/item/${id}`);
-        console.log(response.data);
+        console.log(response.data.data);
 
         commit('setItems', response.data.data)
 
@@ -170,22 +176,25 @@ export default new Vuex.Store({
       }
     },
 
-    async editItem({ commit }, id, itemInfo) {
+    async editItem({ commit },  itemInfo) {
 
       try {
-        const response = await axios.put(`http://localhost:3000/api/edit/${id}`, itemInfo);
-        console.log(response);
+        const response = await axios.put(`http://localhost:3000/api/edit/${itemInfo._id}`, itemInfo);
+        console.log(response.data.message);
 
         let responseObject = {
           type: 'success',
           message: response.data.message
         }
-        commit('setItems', response.data.data)
-        commit('setResponse', responseObject)
-        return response.data.data
-
-
+        commit('setResponseEd', responseObject)
+        console.log(responseObject);
+  
       } catch (error) {
+        let responseObject = {
+          type: 'failed',
+          message: error.response.data.message
+        }
+        commit('setResponseEd', responseObject)
         console.log(error.response)
       }
     },

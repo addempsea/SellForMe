@@ -173,6 +173,8 @@ h1 {
 .api_res {
   background: #fff9f9;
   font-size: 1.5em;
+  font-family: cursive;
+  color: green;
 }
 
 @media screen and (max-width: 768px) {
