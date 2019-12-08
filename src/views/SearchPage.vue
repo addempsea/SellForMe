@@ -1,47 +1,50 @@
 <template>
-    <div class="whole">
-      <div class="container">
-        <h3>
-          Buy and sell for free on SellForMe
-          <br />Post ads for Cars, Phones, Shoes, Clothes and many more.
-          <br />Anything you want, there is somebody that wants to sell.
-        </h3>
-      </div>
-      <div class="item_display">
-        <div v-for="item in getItem" :key="item._id" class="item_holder">
-          <div class="edit" v-if="loggedIn">
-            <span><i class="fa fa-pencil" aria-hidden="true" @click="edit(item._id)"></i></span>
-            <span><i class="fa fa-trash" aria-hidden="true" @click="deleteItem(item._id)"></i></span>
-          </div>
-          <div class="image">
-            <img :src=item.image_url :alt=item.name>
-          </div>
-          <div class="item_name">
-            <p> {{item.name}} </p>
-          </div>
-          <div class="item_price">
-            <p> ${{item.price}} </p>
-          </div>
-          <div class="item_contact">
-            <button>
-              
-              <a :href="`https://api.whatsapp.com/send?phone=234${item.contact}`" target="__blank">Contact me</a>
-              
-            </button>
-          </div>
+  <div class="whole">
+    <div v-if="getItem.length < 1" class="counters">
+      <p>No matched item for your search input</p>
+    </div>
+    <div v-else class="counters">
+      <p>{{getItem.length}} item(s) found</p>
+    </div>
+    <div class="item_display">
+      <div v-for="item in getItem" :key="item._id" class="item_holder">
+        <div class="edit" v-if="loggedIn">
+          <span>
+            <i class="fa fa-pencil" aria-hidden="true" @click="edit(item._id)"></i>
+          </span>
+          <span>
+            <i class="fa fa-trash" aria-hidden="true" @click="deleteItem(item._id)"></i>
+          </span>
+        </div>
+        <div class="image">
+          <img :src="item.image_url" :alt="item.name" />
+        </div>
+        <div class="item_name">
+          <p>{{item.name}}</p>
+        </div>
+        <div class="item_price">
+          <p>${{item.price}}</p>
+        </div>
+        <div class="item_contact">
+          <button>
+            <a
+              :href="`https://api.whatsapp.com/send?phone=234${item.contact}`"
+              target="__blank"
+            >Contact me</a>
+          </button>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
-
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "home",
   computed: {
-    ...mapGetters(["getItem", 'loggedIn'])
+    ...mapGetters(["getItem", "loggedIn"])
   },
 
   methods: {
@@ -53,27 +56,22 @@ export default {
         params: { id: id }
       });
     }
-    
   },
 
   created() {
     return this.fetchItems();
   }
 };
-
 </script>
 <style scoped>
-
 .whole {
-  background: #F9F5F5
+  background: #f9f5f5;
+  padding: 2.6em;
 }
 
-.container {
-  background: url("../assets/image 1.jpg");
-  font-size: 40px;
-  text-align: center;
-  padding: 5rem;
-  margin-top: 20px;
+.counters {
+  font-family: cursive;
+  color: indianred;
 }
 
 h3 {
@@ -87,9 +85,7 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   margin: 2em;
   grid-gap: 30px;
-  
 }
-
 
 .edit {
   display: flex;
@@ -102,7 +98,6 @@ h3 {
   display: flex;
   justify-content: center;
   margin: 1em;
-  
 }
 .item_holder {
   max-width: 100%;
@@ -114,7 +109,7 @@ h3 {
   font-size: 18px;
   line-height: 30px;
   text-align: center;
-  color: #905E5E;
+  color: #905e5e;
   mix-blend-mode: multiply;
   opacity: 0.5;
 }
@@ -134,20 +129,20 @@ h3 {
   font-weight: 600;
   font-size: 18px;
   line-height: 30px;
-  
+
   text-decoration: none;
   text-align: center;
 
-  color: #FFFBFB;
+  color: #fffbfb;
 }
 .item_contact button {
- background: #B89797;
- border: none;
+  background: #b89797;
+  border: none;
 }
 
 @media screen and (max-width: 768px) {
- .item_display {
-   display: block;
- }
+  .item_display {
+    display: block;
+  }
 }
 </style>

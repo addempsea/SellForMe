@@ -52,12 +52,7 @@ export default {
   name: 'edit',
   data() {
     return {
-      item: {
-        price: '',
-        name: '',
-        image_url: '',
-        contact: ''
-      }
+      item: []
     }
   },
 
@@ -67,22 +62,13 @@ export default {
     
     methods: {
       ...mapActions(['fetchItem', 'editItem']),
-      edit() {
-        let data = {
-          name: this.getItems.name,
-          price : this.getItems.price,
-          contact : this.getItems.contact,
-          image_url : this.getItems.image_url
-        }
-        console.log(data);
-        
-        this.editItem(this.$route.params.id, data)
-      }
+
     },
 
     mounted() {
       this.fetchItem(this.$route.params.id)
     }
+
 
 
 }

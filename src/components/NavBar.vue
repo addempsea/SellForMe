@@ -5,7 +5,7 @@
     </div>
     <div class="search">
       <form @submit.prevent>
-        <input type="text" placeholder="Search..." name="search" v-model="query">
+        <input type="text" placeholder="Search..." name="search" v-model="query" />
         <button class="navbar_button" @click.prevent="filter">Search</button>
       </form>
     </div>
@@ -23,38 +23,36 @@
       </li>
       <li>
         <a href="#" @click="signout">Logout</a>
-      </li> 
+      </li>
     </ul>
   </nav>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: 'Navbar',
+  name: "Navbar",
   data() {
     return {
       query: ""
-    }
+    };
   },
   computed: {
-    ...mapGetters([
-      'loggedIn'
-    ])
+    ...mapGetters(["loggedIn"])
   },
   methods: {
-    ...mapActions(['logout', 'search']),
+    ...mapActions(["logout", "search"]),
 
     signout() {
-      this.logout()
-      this.$router.push({name: 'home'})
+      this.logout();
+      this.$router.push({ name: "home" });
     },
 
     filter() {
-      this.search(this.query)
-      this.$router.push({name: 'search'})
+      this.search(this.query);
+      this.$router.push({ name: "search" });
     }
   }
-}
+};
 </script>
 <style scoped>
 .navbar {
@@ -63,33 +61,33 @@ export default {
   justify-content: space-between;
   padding: 0.2rem 4.75rem;
   align-items: center;
-  font-family: 'Catamaran', sans-serif;
+  font-family: "Catamaran", sans-serif;
   background-color: #ffffff;
 }
 .logo {
   font-size: 32px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #905E5E;
+  color: #905e5e;
   text-decoration: none;
-  background-color: #ffffff
+  background-color: #ffffff;
 }
-.search  input {
+.search input {
   width: 400px;
   font-size: 16px;
   padding: 0.75rem 2rem;
-  border: 1px solid #905E5E;
+  border: 1px solid #905e5e;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  background-color: #ffffff
+  background-color: #ffffff;
 }
 .search form {
   display: flex;
   padding: 1rem;
-  background-color: #ffffff
+  background-color: #ffffff;
 }
 .navbar_button {
-  background: #905E5E;
+  background: #905e5e;
   padding: 1rem 3rem;
   border: none;
   color: #ffffff;
@@ -97,7 +95,6 @@ export default {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   cursor: pointer;
-  
 }
 .navbar_menu {
   display: flex;
@@ -105,24 +102,24 @@ export default {
   padding: 0;
   margin: 0;
   align-items: center;
-  background-color: #ffffff
+  background-color: #ffffff;
 }
 .navbar_menu li {
   margin: 0.5rem 2rem;
   cursor: pointer;
   border-bottom: 2px solid transparent;
   transition: border-bottom 500ms ease-in-out;
-  background-color: #ffffff
+  background-color: #ffffff;
 }
 .navbar_menu a {
-  color: #905E5E;
+  color: #905e5e;
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
-  background-color: #ffffff
+  background-color: #ffffff;
 }
 .navbar_menu li:hover {
-  border-bottom: 2px solid #905E5E;
+  border-bottom: 2px solid #905e5e;
 }
 @media screen and (max-width: 768px) {
   .search {

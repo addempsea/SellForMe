@@ -1,7 +1,6 @@
 <template class='temp'>
   <div class="auth">
     <div class="auth_form">
-      
       <form @submit.prevent="addItems">
         <h1>Add New Item</h1>
         <div class="form_item">
@@ -27,18 +26,11 @@
         <div class="form_item">
           <label for="Image Url">Image URL</label>
           <br />
-          <input
-            type="url"
-            name="image_url"
-            placeholder="Image url"
-            v-model="item.image_url"
-          />
+          <input type="url" name="image_url" placeholder="Image url" v-model="item.image_url" />
         </div>
-        <p class="api_res">{{ apiResponseAdd.message }} </p>
-       <div class="text-center">
-          <button>
-            Add
-          </button>
+        <p class="api_res">{{ apiResponseAdd.message }}</p>
+        <div class="text-center">
+          <button>Add</button>
         </div>
       </form>
     </div>
@@ -48,89 +40,90 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
-    name: 'edit',
-    data() {
-        return {
-            item: {
-                name: '',
-                price: '',
-                contact: '',
-                image_url: ''
-            }
-        }
-    },
-
-    computed: {
-      ...mapGetters(['apiResponseAdd']),
-       isValid() {
-        if( this.item.price == '' || this.item.contact == '' || this.item.name == '' || this.item.image_url == '') {
-          return false;
-        } else {
-          return true;
-        }
+  name: "edit",
+  data() {
+    return {
+      item: {
+        name: "",
+        price: "",
+        contact: "",
+        image_url: ""
       }
-    },
+    };
+  },
 
-    methods: {
-      ...mapActions(['addItem']),
+  computed: {
+    ...mapGetters(["apiResponseAdd"]),
+    isValid() {
+      if (
+        this.item.price == "" ||
+        this.item.contact == "" ||
+        this.item.name == "" ||
+        this.item.image_url == ""
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
 
-    
-        addItems() {
-          if (this.isValid)  {
-            this.addItem(this.item)
-            this.item = ''
-          } else {
-            alert('All fields are required')
-          }
-        }
-     
-    },
-}
+  methods: {
+    ...mapActions(["addItem"]),
+
+    addItems() {
+      if (this.isValid) {
+        this.addItem(this.item);
+        this.item = "";
+      } else {
+        alert("All fields are required");
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
 .auth_form {
-  
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 2rem 6rem;
-  background-color: #fff9f9
+  background-color: #fff9f9;
 }
 
 .form_item {
   margin: 2rem 0;
-  background-color: #fff9f9
+  background-color: #fff9f9;
 }
 
 form {
-    background-color: #fff9f9
+  background-color: #fff9f9;
 }
 
 label {
-    background-color: #fff9f9;
-    
+  background-color: #fff9f9;
 }
 
 input {
-    background-color: #fff9f9;
-    width: 120%;
-    padding: 0.7em;
-    border: 1px solid #905E5E;
-    border-radius: 4px;
-    font-size: 16px;
-    color: black;
-    margin-top: 0.5rem;
+  background-color: #fff9f9;
+  width: 120%;
+  padding: 0.7em;
+  border: 1px solid #905e5e;
+  border-radius: 4px;
+  font-size: 16px;
+  color: black;
+  margin-top: 0.5rem;
 }
 
 h1 {
-    background-color: #fff9f9;
-    color: #905E5E;
-    margin-left: 2.5em;
+  background-color: #fff9f9;
+  color: #905e5e;
+  margin-left: 2.5em;
 }
 
 .auth_form button {
-  background: #DFCCCC;
+  background: #dfcccc;
   padding: 1rem 3rem;
   border: none;
   color: #ffffff;
@@ -142,22 +135,22 @@ h1 {
 }
 
 .auth_form button:hover {
-  color: #905E5E;
-  background: #DFCCCC;
+  color: #905e5e;
+  background: #dfcccc;
 }
 
 .text-center {
   text-align: center;
-   background-color: #fff9f9;
+  background-color: #fff9f9;
 }
 
 .auth_check p {
   text-align: center;
   font-size: 16px;
-   background-color: #fff9f9;
+  background-color: #fff9f9;
 }
 .auth_check a {
-  color:  #905E5E;
+  color: #905e5e;
   text-decoration: none;
   background-color: #fff9f9;
 }
@@ -165,12 +158,12 @@ h1 {
   text-decoration: underline;
 }
 .text-center {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .api_res {
-    background: #fff9f9;
-    font-size: 1.5em;
+  background: #fff9f9;
+  font-size: 1.5em;
 }
 
 @media screen and (max-width: 768px) {

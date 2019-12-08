@@ -30,4 +30,12 @@ body {
 * {
   box-sizing: inherit;
 }
+@media screen and (max-width: 768px) {
+  .auth_form {
+    padding: 1rem;
+  }
+  .auth_form h1 {
+    font-size: 1.5rem;
+  }
+}
 </style>

@@ -75,15 +75,18 @@ export default new Vuex.Store({
       })
     },
 
+    // editItems(state, item) {
+    //   let ed = state.items.find(e => e.id == item.id)
+    //   state.items = ed
+    // },
+
     searchItem(state, query) {
       let x = query;
       let result = state.items.filter(function(item) {
         return item.name.includes(x);
       });
-
       state.item = result
     },
-
 
     retrieveToken(state, token) {
       state.token = token
@@ -113,7 +116,6 @@ export default new Vuex.Store({
         commit('setResponseReg', responseObject)
         console.log(error.response)
       }
-
     },
 
     async login({ commit }, userInfo) {
@@ -178,8 +180,9 @@ export default new Vuex.Store({
           type: 'success',
           message: response.data.message
         }
-
+        commit('setItems', response.data.data)
         commit('setResponse', responseObject)
+        return response.data.data
 
 
       } catch (error) {
