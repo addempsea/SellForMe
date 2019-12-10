@@ -66,6 +66,7 @@ export default {
   position: sticky;
   top: 0;
   position: -webkit-sticky;
+  z-index: 55;
 }
 .logo {
   font-size: 32px;

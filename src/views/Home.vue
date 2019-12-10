@@ -71,16 +71,17 @@ export default {
 
 .container {
   background: url("../assets/image 1.jpg");
-  font-size: 40px;
+  font-size: 22px;
   text-align: center;
   padding: 5rem;
   margin-top: 20px;
 }
 
 h3 {
-  font-size: 40px;
+  font-size: 26px;
   text-align: center;
   background: none;
+  color: #905e5e;
 }
 
 .item_display {
@@ -88,6 +89,7 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   margin: 2em;
   grid-gap: 30px;
+
 }
 
 .edit {
@@ -105,6 +107,8 @@ h3 {
 .item_holder {
   max-width: 100%;
   background: #ffff;
+  border-radius: 10px;
+  box-shadow: 2px 4px 4px rgba(210, 105, 30, 0.1);
 }
 .item_name {
   font-style: normal;

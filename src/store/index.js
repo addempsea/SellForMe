@@ -109,8 +109,8 @@ export default new Vuex.Store({
   actions: {
     async signup({ commit }, userInfo) {
       try {
-        const response = await axios.post('http://localhost:3000/api/register', userInfo);
-        console.log(response);
+        const response = await axios.post('https://sellforme-api.herokuapp.com/api/register', userInfo);
+       
         let responseObject = {
           type: 'success',
           message: response.data.message
@@ -122,15 +122,15 @@ export default new Vuex.Store({
           message: error.response.data.message
         }
         commit('setResponseReg', responseObject)
-        console.log(error.response)
+       
       }
     },
 
     async login({ commit }, userInfo) {
       try {
-        const response = await axios.post('http://localhost:3000/api/login', userInfo);
+        const response = await axios.post('https://sellforme-api.herokuapp.com/api/login', userInfo);
         if (response.status == 200) {
-          console.log(response);
+         
           let responseObject = {
             type: 'success',
             message: response.data.message
@@ -139,8 +139,7 @@ export default new Vuex.Store({
           localStorage.setItem('access_token', token)
           commit('retrieveToken', token)
           commit('setResponse', responseObject)
-          console.log(responseObject);
-          console.log(token);
+         
         }
       } catch (error) {
         let responseObject = {
@@ -148,43 +147,43 @@ export default new Vuex.Store({
           message: error.response.data.message
         }
         commit('setResponse', responseObject)
-        console.log(error.response)
+       
       }
     },
 
     async fetchItems({ commit }) {
       try {
-        const response = await axios.get('http://localhost:3000/api/items');
+        const response = await axios.get('http://sellforme-api.herokuapp.com/api/items');
         commit('setItems', response.data.data)
 
       } catch (error) {
-        console.log(error.response)
+        commit('setItems', error.response)
       }
     },
 
     async fetchItem({ commit }, id) {
       try {
-        const response = await axios.get(`http://localhost:3000/api/item/${id}`);
-        console.log(response.data.data);
+        const response = await axios.get(`https://sellforme-api.herokuapp.com/api/item/${id}`);
+       
 
         commit('setItems', response.data.data)
 
       } catch (error) {
-        console.log(error.response)
+        commit('setItems', error.response)
       }
     },
 
     async editItem({ commit },  itemInfo) {
       try {
-        const response = await axios.put(`http://localhost:3000/api/edit/${itemInfo._id}`, itemInfo);
-        console.log(response.data.message);
+        const response = await axios.put(`https://sellforme-api.herokuapp.com/api/edit/${itemInfo._id}`, itemInfo);
+        
 
         let responseObject = {
           type: 'success',
           message: response.data.message
         }
         commit('setResponseEd', responseObject)
-        console.log(responseObject);
+       
   
       } catch (error) {
         let responseObject = {
@@ -192,16 +191,16 @@ export default new Vuex.Store({
           message: error.response.data.message
         }
         commit('setResponseEd', responseObject)
-        console.log(error.response)
+        commit('setItems', error.response)
       }
     },
 
     async addItem({ commit }, itemInfo) {
       try {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
-        const response = await axios.post('http://localhost:3000/api/add', itemInfo);
+        const response = await axios.post('https://sellforme-api.herokuapp.com/api/add', itemInfo);
         commit('newItem', itemInfo)
-        console.log(response);
+        
         let responseObject = {
           type: 'success',
           message: response.data.message
@@ -214,19 +213,18 @@ export default new Vuex.Store({
           message: error.response.data.message
         }
         commit('setResponseAdd', responseObject)
-        console.log(error.response)
+        commit('setItems', error.response)
       }
     },
 
     async deleteItem({ commit }, id) {
       try {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
-        const response = await axios.delete(`http://localhost:3000/api/delete/${id}`);
-        console.log(response);
+        await axios.delete(`https://sellforme-api.herokuapp.com/api/delete/${id}`); 
 
         commit('removeItem', id);
       } catch (error) {
-        console.log(error.response)
+        commit('setItems', error.response)
       }
     },
 
