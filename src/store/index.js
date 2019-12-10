@@ -191,7 +191,6 @@ export default new Vuex.Store({
           message: error.response.data.message
         }
         commit('setResponseEd', responseObject)
-        commit('setItems', error.response)
       }
     },
 
@@ -213,7 +212,6 @@ export default new Vuex.Store({
           message: error.response.data.message
         }
         commit('setResponseAdd', responseObject)
-        commit('setItems', error.response)
       }
     },
 
@@ -224,7 +222,7 @@ export default new Vuex.Store({
 
         commit('removeItem', id);
       } catch (error) {
-        commit('setItems', error.response)
+        alert(error.response.data.message)
       }
     },
 
