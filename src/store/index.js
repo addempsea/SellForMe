@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -23,21 +22,23 @@ export default new Vuex.Store({
       type: "",
       message: ""
     },
+
     token: localStorage.getItem('access_token') || null,
 
     items: [],
     item: []
-
   },
 
   getters: {
     loggedIn(state) {
       return state.token !== null
     },
+
     apiResponse: state => state.response,
     apiResponseReg: state => state.responseReg,
     apiResponseAdd: state => state.responseAdd,
     apiResponseEd: state => state.responseEd,
+    
     getItems: state => state.items,
     getItem: state => state.item
   },
@@ -68,6 +69,7 @@ export default new Vuex.Store({
         message: payload.message
       }
     },
+
     setItems(state, items) {
       state.items = items;
     },
@@ -76,7 +78,7 @@ export default new Vuex.Store({
       state.item = item
     },
 
-    newItem(state, item) {
+    newItem: (state, item) => {
       state.items.unshift(item)
     },
 
@@ -87,9 +89,9 @@ export default new Vuex.Store({
     },
 
     searchItem(state, query) {
-      let x = query;
+      let x = query.toLowerCase();
       let result = state.items.filter(function(item) {
-        return item.name.includes(x);
+        return item.name.toLowerCase().includes(x);
       });
       state.item = result
     },
@@ -126,10 +128,7 @@ export default new Vuex.Store({
 
     async login({ commit }, userInfo) {
       try {
-        
         const response = await axios.post('http://localhost:3000/api/login', userInfo);
-
-
         if (response.status == 200) {
           console.log(response);
           let responseObject = {
@@ -137,7 +136,6 @@ export default new Vuex.Store({
             message: response.data.message
           }
           const token = response.data.token
-
           localStorage.setItem('access_token', token)
           commit('retrieveToken', token)
           commit('setResponse', responseObject)
@@ -177,7 +175,6 @@ export default new Vuex.Store({
     },
 
     async editItem({ commit },  itemInfo) {
-
       try {
         const response = await axios.put(`http://localhost:3000/api/edit/${itemInfo._id}`, itemInfo);
         console.log(response.data.message);
@@ -244,9 +241,6 @@ export default new Vuex.Store({
       
     }
   },
-
-
-
   modules: {
   }
 })

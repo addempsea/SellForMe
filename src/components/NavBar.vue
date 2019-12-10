@@ -63,6 +63,9 @@ export default {
   align-items: center;
   font-family: "Catamaran", sans-serif;
   background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  position: -webkit-sticky;
 }
 .logo {
   font-size: 32px;

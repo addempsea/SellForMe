@@ -6,6 +6,7 @@ import RegisterPage from '../views/RegisterPage.vue'
 import Add from '../views/Add.vue'
 import Edit from '../views/Edit.vue'
 import Search from '../views/SearchPage.vue'
+import Error from '../views/404.vue'
 
 
 Vue.use(VueRouter)
@@ -40,6 +41,11 @@ const routes = [
     path: '/search',
     name: 'search',
     component: Search
+  },
+  {
+    path: '*',
+    name: 'error',
+    component:Error
   }
 ]
 
