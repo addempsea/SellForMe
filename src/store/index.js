@@ -153,7 +153,7 @@ export default new Vuex.Store({
 
     async fetchItems({ commit }) {
       try {
-        const response = await axios.get('http://sellforme-api.herokuapp.com/api/items');
+        const response = await axios.get('https://sellforme-api.herokuapp.com/api/items');
         commit('setItems', response.data.data)
 
       } catch (error) {
@@ -163,7 +163,7 @@ export default new Vuex.Store({
 
     async fetchItem({ commit }, id) {
       try {
-        const response = await axios.get(`http://sellforme-api.herokuapp.com/api/item/${id}`);
+        const response = await axios.get(`https://sellforme-api.herokuapp.com/api/item/${id}`);
        
 
         commit('setItems', response.data.data)
@@ -175,7 +175,7 @@ export default new Vuex.Store({
 
     async editItem({ commit },  itemInfo) {
       try {
-        const response = await axios.put(`http://sellforme-api.herokuapp.com/api/edit/${itemInfo._id}`, itemInfo);
+        const response = await axios.put(`https://sellforme-api.herokuapp.com/api/edit/${itemInfo._id}`, itemInfo);
         
 
         let responseObject = {
@@ -198,7 +198,7 @@ export default new Vuex.Store({
     async addItem({ commit }, itemInfo) {
       try {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
-        const response = await axios.post('http://sellforme-api.herokuapp.com/api/add', itemInfo);
+        const response = await axios.post('https://sellforme-api.herokuapp.com/api/add', itemInfo);
         commit('newItem', itemInfo)
         
         let responseObject = {
@@ -220,7 +220,7 @@ export default new Vuex.Store({
     async deleteItem({ commit }, id) {
       try {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
-        await axios.delete(`http://sellforme-api.herokuapp.com/api/delete/${id}`); 
+        await axios.delete(`https://sellforme-api.herokuapp.com/api/delete/${id}`); 
 
         commit('removeItem', id);
       } catch (error) {
