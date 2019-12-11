@@ -22,6 +22,8 @@
               name="password"
               placeholder="Your Password"
               v-model="user.password"
+              pattern=".{6,}" 
+              title="Six or more characters"
             />
           </div>
           <p class="api_res">{{ apiResponseReg.message }}</p>
