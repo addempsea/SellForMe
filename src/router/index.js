@@ -9,6 +9,7 @@ import Search from '../views/SearchPage.vue'
 import Error from '../views/404.vue'
 
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,12 +21,20 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: LoginPage
+    component: LoginPage,
+    meta: {
+      requiresGuest: true
+    }
   },
+
   {
     path: '/register',
     name: 'register',
-    component: RegisterPage
+    component: RegisterPage,
+    meta: {
+      requiresGuest: true
+    }
+  
   },
   {
     path: '/add',
