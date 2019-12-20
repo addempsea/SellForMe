@@ -84,7 +84,6 @@ export default {
 
 <style scoped>
 .auth_form {
-  padding: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,7 +126,7 @@ h1 {
   background: blue;
   padding: 1rem 3rem;
   border: none;
-  color: #fffffff;
+  color: #ffffff;
   font-size: 16px;
   border-radius: 4px;
   width: 100%;
@@ -170,6 +169,18 @@ h1 {
   .auth_form {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
+
+  input {
+    width: 100%;
+    padding: 0.7em;
+    border: 1px solid blue;
+    border-radius: 4px;
+    font-size: 16px;
+    color: black;
+    margin-top: 0.5rem;
+  }
+
 }
 </style>

@@ -103,24 +103,14 @@ export default {
   justify-content: center;
   align-items: center;
   margin: 2rem 6rem;
-  /* background-color: #fff9f9; */
 }
 
 .form_item {
   margin: 2rem 0;
-  /* background-color: #fff9f9; */
+  
 }
 
-/* form {
-  background-color: #fff9f9;
-} */
-
-/* label {
-  background-color: #fff9f9;
-} */
-
 input {
-  /* background-color: #fff9f9; */
   width: 100%;
   padding: 0.7em;
   border: 1px solid blue;
@@ -131,7 +121,7 @@ input {
 }
 
 h1 {
-  /* background-color: #fff9f9; */
+  
   color: blue;
   margin-left: 2.5em;
 }
@@ -166,7 +156,6 @@ h1 {
 .auth_check a {
   color: blue;
   text-decoration: none;
-  /* background-color: #fff9f9; */
 }
 .auth_check a:hover {
   text-decoration: underline;
@@ -183,6 +172,10 @@ h1 {
   .auth_form {
     display: flex;
     justify-content: center;
+  }
+
+  h1 {
+    font-size: 16px
   }
  
 }
