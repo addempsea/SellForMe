@@ -56,7 +56,7 @@ export default {
 </script>
 <style scoped>
 .navbar {
-  box-shadow: 2px 4px 4px rgba(210, 105, 30, 0.1);
+  box-shadow: 2px 4px 4px rgba(30, 168, 210, 0.1);
   display: flex;
   justify-content: space-between;
   padding: 0.2rem 4.75rem;
@@ -72,7 +72,7 @@ export default {
   font-size: 32px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #905e5e;
+  color: blue;
   text-decoration: none;
   background-color: #ffffff;
 }
@@ -80,7 +80,7 @@ export default {
   width: 400px;
   font-size: 16px;
   padding: 0.75rem 2rem;
-  border: 1px solid #905e5e;
+  border: 1px solid blue;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   background-color: #ffffff;
@@ -91,7 +91,7 @@ export default {
   background-color: #ffffff;
 }
 .navbar_button {
-  background: #905e5e;
+  background: blue;
   padding: 1rem 3rem;
   border: none;
   color: #ffffff;
@@ -116,14 +116,14 @@ export default {
   background-color: #ffffff;
 }
 .navbar_menu a {
-  color: #905e5e;
+  color: blue;
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
   background-color: #ffffff;
 }
 .navbar_menu li:hover {
-  border-bottom: 2px solid #905e5e;
+  border-bottom: 2px solid blue;
 }
 @media screen and (max-width: 768px) {
   .search {

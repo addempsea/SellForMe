@@ -65,7 +65,7 @@ export default {
 </script>
 <style scoped>
 .whole {
-  background: #f9f5f5;
+  background: #f5f5f5;
   padding-bottom: 2.5em;
 }
 
@@ -81,7 +81,7 @@ h3 {
   font-size: 26px;
   text-align: center;
   background: none;
-  color: #905e5e;
+  color: blue;
 }
 
 .item_display {
@@ -97,6 +97,7 @@ h3 {
   justify-content: space-between;
   margin: 1em;
   cursor: pointer;
+  color: blue;
 }
 
 .image {
@@ -116,7 +117,7 @@ h3 {
   font-size: 18px;
   line-height: 30px;
   text-align: center;
-  color: #905e5e;
+  color: blue;
   mix-blend-mode: multiply;
   opacity: 0.5;
 }
@@ -143,8 +144,9 @@ h3 {
   color: #fffbfb;
 }
 .item_contact button {
-  background: #b89797;
+  background: blue;
   border: none;
+  border-radius: 5px
 }
 
 @media screen and (max-width: 768px) {

@@ -70,7 +70,7 @@ export default {
 }
 
 .counters {
-  font-family: cursive;
+  font-family: sans-serif;
   color: indianred;
 }
 
@@ -109,7 +109,7 @@ h3 {
   font-size: 18px;
   line-height: 30px;
   text-align: center;
-  color: #905e5e;
+  color: blue;
   mix-blend-mode: multiply;
   opacity: 0.5;
 }

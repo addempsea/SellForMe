@@ -105,9 +105,9 @@ label {
 
 input {
     background-color: #fff9f9;
-    width: 120%;
+    width: 100%;
     padding: 0.7em;
-    border: 1px solid #905E5E;
+    border: 1px solid blue;
     border-radius: 4px;
     font-size: 16px;
     color: black;
@@ -116,25 +116,25 @@ input {
 
 h1 {
     background-color: #fff9f9;
-    color: #905E5E;
+    color: blue;
     margin-left: 2.5em;
 }
 
 .edit_form button {
-  background: #DFCCCC;
+  background: blue;
   padding: 1rem 3rem;
   border: none;
   color: #ffffff;
   font-size: 16px;
   border-radius: 4px;
-  width: 120%;
+  width: 100%;
   cursor: pointer;
   transition: all 200ms ease-in;
 }
 
-.edit_form button:hover {
-  color: #905E5E;
-  background: #DFCCCC;
+.auth_form button:hover {
+  color:white;
+  background: purple;
 }
 
 .text-center {
@@ -148,7 +148,7 @@ h1 {
    background-color: #fff9f9;
 }
 .edit_check a {
-  color:  #905E5E;
+  color:  blue;
   text-decoration: none;
   background-color: #fff9f9;
 }
@@ -159,7 +159,7 @@ h1 {
     margin-bottom: 0.5rem;
 }
 .api_res {
-  font-family: cursive;
+  font-family: sans-serif;
   color: green;
 }
 

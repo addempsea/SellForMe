@@ -107,9 +107,9 @@ label {
 
 input {
   background-color: #fff9f9;
-  width: 120%;
+  width: 100%;
   padding: 0.7em;
-  border: 1px solid #905e5e;
+  border: 1px solid blue;
   border-radius: 4px;
   font-size: 16px;
   color: black;
@@ -118,25 +118,25 @@ input {
 
 h1 {
   background-color: #fff9f9;
-  color: #905e5e;
+  color: blue;
   margin-left: 2.5em;
 }
 
 .auth_form button {
-  background: #dfcccc;
+  background: blue;
   padding: 1rem 3rem;
   border: none;
   color: #ffffff;
   font-size: 16px;
   border-radius: 4px;
-  width: 120%;
+  width: 100%;
   cursor: pointer;
   transition: all 200ms ease-in;
 }
 
 .auth_form button:hover {
-  color: #905e5e;
-  background: #dfcccc;
+  color:white;
+  background: purple;
 }
 
 .text-center {
@@ -150,7 +150,7 @@ h1 {
   background-color: #fff9f9;
 }
 .auth_check a {
-  color: #905e5e;
+  color: blue;
   text-decoration: none;
   background-color: #fff9f9;
 }
@@ -164,7 +164,7 @@ h1 {
 .api_res {
   background: #fff9f9;
   font-size: 1.5em;
-  font-family: cursive;
+  font-family: sans-serif;
   color: green;
 }
 

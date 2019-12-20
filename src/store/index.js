@@ -175,6 +175,7 @@ export default new Vuex.Store({
 
     async editItem({ commit },  itemInfo) {
       try {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.token
         const response = await axios.put(`https://sellforme-api.herokuapp.com/api/edit/${itemInfo._id}`, itemInfo);
         
 
@@ -186,6 +187,7 @@ export default new Vuex.Store({
        
   
       } catch (error) {
+       
         let responseObject = {
           type: 'failed',
           message: error.response.data.message
