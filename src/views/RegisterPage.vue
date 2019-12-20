@@ -115,12 +115,12 @@ export default {
   background-color: #fff9f9;
 } */
 
-label {
+/* label {
   background-color: #fff9f9;
-}
+} */
 
 input {
-  background-color: #fff9f9;
+  /* background-color: #fff9f9; */
   width: 100%;
   padding: 0.7em;
   border: 1px solid blue;
@@ -131,7 +131,7 @@ input {
 }
 
 h1 {
-  background-color: #fff9f9;
+  /* background-color: #fff9f9; */
   color: blue;
   margin-left: 2.5em;
 }
@@ -155,18 +155,18 @@ h1 {
 
 .text-center {
   text-align: center;
-  background-color: #fff9f9;
+  /* background-color: #fff9f9; */
 }
 
 .auth_check p {
   text-align: center;
   font-size: 16px;
-  background-color: #fff9f9;
+  /* background-color: #fff9f9; */
 }
 .auth_check a {
   color: blue;
   text-decoration: none;
-  background-color: #fff9f9;
+  /* background-color: #fff9f9; */
 }
 .auth_check a:hover {
   text-decoration: underline;
@@ -181,10 +181,9 @@ h1 {
 
 @media screen and (max-width: 768px) {
   .auth_form {
-    padding: 1rem;
+    display: flex;
+    justify-content: center;
   }
-  .auth_form h1 {
-    font-size: 1rem;
-  }
+ 
 }
 </style>

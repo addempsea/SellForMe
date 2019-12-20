@@ -89,25 +89,25 @@ export default {
   justify-content: center;
   align-items: center;
   margin: 2rem 15rem;
-  background-color: #fff9f9;
+  background-color: #ffffff;
 }
 
 .form_item {
   margin-bottom: 2rem;
-  background-color: #fff9f9;
+  background-color: #ffffff;
 }
 
 form {
-  background-color: #fff9f9;
+  background-color: #ffffff;
 }
 
 label {
-  background-color: #fff9f9;
+  background-color: #ffffff;
   margin-left: 0em;
 }
 
 input {
-  background-color: #fff9f9;
+  background-color: #ffffff;
   width: 100%;
   padding: 0.7em;
   border: 1px solid blue;
@@ -118,7 +118,7 @@ input {
 }
 
 h1 {
-  background-color: #fff9f9;
+  background-color: #ffffff;
   color: blue;
   margin-left: 2.5em;
 }
@@ -127,7 +127,7 @@ h1 {
   background: blue;
   padding: 1rem 3rem;
   border: none;
-  color: #ffffff;
+  color: #fffffff;
   font-size: 16px;
   border-radius: 4px;
   width: 100%;
@@ -142,25 +142,25 @@ h1 {
 
 .text-center {
   text-align: center;
-  background-color: #fff9f9;
+  background-color: #ffffff;
 }
 
 .auth_check p {
   text-align: center;
   font-size: 16px;
-  background-color: #fff9f9;
+  background-color: #ffffff;
 }
 .auth_check a {
   color: blue;
   text-decoration: none;
-  background-color: #fff9f9;
+  background-color: #ffffff;
 }
 .auth_check a:hover {
   text-decoration: underline;
 }
 
 .api_res {
-  background: #fff9f9;
+  background: #ffffff;
   font-size: 1.5em;
   font-family: sans-serif;
   color: green;
@@ -168,10 +168,8 @@ h1 {
 
 @media screen and (max-width: 768px) {
   .auth_form {
-    padding: 0 auto;
-  }
-  .auth_form h1 {
-    font-size: 1rem;
+    display: flex;
+    justify-content: center;
   }
 }
 </style>
