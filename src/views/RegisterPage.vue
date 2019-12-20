@@ -103,17 +103,17 @@ export default {
   justify-content: center;
   align-items: center;
   margin: 2rem 6rem;
-  background-color: #fff9f9;
+  /* background-color: #fff9f9; */
 }
 
 .form_item {
   margin: 2rem 0;
-  background-color: #fff9f9;
+  /* background-color: #fff9f9; */
 }
 
-form {
+/* form {
   background-color: #fff9f9;
-}
+} */
 
 label {
   background-color: #fff9f9;
@@ -180,14 +180,11 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
-  .auth {
-    grid-template-columns: 1fr;
-  }
   .auth_form {
     padding: 1rem;
   }
   .auth_form h1 {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 </style>

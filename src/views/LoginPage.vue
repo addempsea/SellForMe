@@ -168,10 +168,10 @@ h1 {
 
 @media screen and (max-width: 768px) {
   .auth_form {
-    padding: 1rem;
+    padding: 0 auto;
   }
   .auth_form h1 {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 </style>
